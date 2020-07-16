@@ -1,0 +1,91 @@
+#CLASS 0
+$CLASS = "Tools|Profile|Stats"
+//Score
+#TR Score_Strength_Agility_Charisma {^Strength:%s%1%sAgility:%s%2%sCharisma:%s%3} {
+#VAR MyStrength {%trim(%1)} {} VAR
+#VAR MyAgility {%trim(%2)} {} VAR
+#VAR MyCharisma {%trim(%3)} {} VAR
+#IF (@MyName) {
+  #VAR %concat(@MyName,"_Strength") {@MyStrength} {} @MyName
+  #VAR %concat(@MyName,"_Agility") {@MyAgility} {} @MyName
+  #VAR %concat(@MyName,"_Charisma") {@MyCharisma} {} @MyName
+}
+} $CLASS
+
+#TR Score_Constitution_Coordination_Intelligence {^Constitution:%s%1%sCoordination:%s%2%sIntelligence:%s%3} {
+#VAR MyConstitution {%trim(%1)} {} VAR
+#VAR MyCoordination {%trim(%2)} {} VAR
+#VAR MyIntelligence {%trim(%3)} {} VAR
+#IF (@MyName) {
+  #VAR %concat(@MyName,"_Constitution") {@MyConstitution} {} @MyName
+  #VAR %concat(@MyName,"_Coordination") {@MyCoordination} {} @MyName
+  #VAR %concat(@MyName,"_Intelligence") {@MyIntelligence} {} @MyName
+}
+} $CLASS
+
+#TR Score_Exp1 {^Current exp:%s%1%s~(%2percent~% for level~)%sTotal exp: (%d)} {
+#T- Score_Exp1;#T- Score_Exp2;#T- Score_Exp3
+#VAR MyCurrentExperience {%trim(%1)} {} VAR
+#VAR MyForNextlevel {%trim(%2)} {} VAR
+#VAR MyTotalExperience {%trim(%3)} {} VAR
+#IF (@MyName) {
+  #VAR %concat(@MyName,"_CurrentExperience") {@MyCurrentExperience} {} @MyName
+  #VAR %concat(@MyName,"_ForNextlevel") {@MyForNextlevel} {} @MyName
+  #VAR %concat(@MyName,"_TotalExperience") {@MyTotalExperience} {} @MyName
+}
+} $CLASS
+
+#TR Score_Exp2 {^Current exp:%s%1%s~(%2~% for level~)%sTotal exp: (%d)} {
+#T- Score_Exp1;#T- Score_Exp2;#T- Score_Exp3
+#VAR MyCurrentExperience {%trim(%1)} {} VAR
+#VAR MyForNextlevel {%trim(%2)} {} VAR
+#VAR MyTotalExperience {%trim(%3)} {} VAR
+#IF (@MyName) {
+  #VAR %concat(@MyName,"_CurrentExperience") {@MyCurrentExperience} {} @MyName
+  #VAR %concat(@MyName,"_ForNextlevel") {@MyForNextlevel} {} @MyName
+  #VAR %concat(@MyName,"_TotalExperience") {@MyTotalExperience} {} @MyName
+}
+} $CLASS
+
+#TR Score_Exp3 {^Current exp:%s%1%s~(for %2 extra levels~)%sTotal exp: (%d)} {
+#VAR MyCurrentExperience {%trim(%1)} {} VAR
+#VAR MyForNextlevel {%trim(%2)} {} VAR
+#VAR MyTotalExperience {%trim(%3)} {} VAR
+#IF (@MyName) {
+  #VAR %concat(@MyName,"_CurrentExperience") {@MyCurrentExperience} {} @MyName
+  #VAR %concat(@MyName,"_ForNextlevel") {@MyForNextlevel} {} @MyName
+  #VAR %concat(@MyName,"_TotalExperience") {@MyTotalExperience} {} @MyName
+}
+} $CLASS
+
+#TR Score_HPEP_Quests {^HP:%s%d/%1%sEND:%s%d/%2%sAvg. Stats:%s%3%sQuests done:%s%4} {
+#VAR MyMaxHP {%trim(%1)} {} VAR
+#VAR MyMaxEP {%trim(%2)} {} VAR
+#VAR MyAverageStats {%trim(%3)} {} VAR
+#VAR MyQuestsDone {%trim(%4)} {} VAR
+#IF (@MyName) {
+  #VAR %concat(@MyName,"_MaxHP") {@MyMaxHP} {} @MyName
+  #VAR %concat(@MyName,"_MaxEP") {@MyMaxEP} {} @MyName
+  #VAR %concat(@MyName,"_AverageStats") {@MyAverageStats} {} @MyName
+  #VAR %concat(@MyName,"_QuestsDone") {@MyQuestsDone} {} @MyName
+  #T+ Score_Exp1;#T+ Score_Exp2;#T+ Score_Exp3
+  #T+ Score_Strength_Agility_Charisma
+  #T+ Score_Constitution_Coordination_Intelligence
+  #T+ Score_Level_Profession_Age_Alignment
+}
+} $CLASS
+
+#TR Score_Level_Profession_Age_Alignment {^Level (%d) ({@Professions}), %3 old.%sAlignment: %4} {
+#VAR MyTrueLevel {%trim(%1)} {} VAR
+#VAR MyTrueProfession {%trim(%2)} {} VAR
+#VAR MyAge {%trim(%3)} {} VAR
+#VAR MyTrueAlignment {%trim(%4)} {} VAR
+#IF (@MyName) {
+  #VAR %concat(@MyName,"_TrueLevel") {@MyTrueLevel} {} @MyName
+  #VAR %concat(@MyName,"_TrueProfession") {@MyTrueProfession} {} @MyName
+  #VAR %concat(@MyName,"_Age") {@MyAge} {} @MyName
+  #VAR %concat(@MyName,"_TrueAlignment") {@MyTrueAlign} {} @MyName
+}
+} $CLASS
+
+#CLASS 0
