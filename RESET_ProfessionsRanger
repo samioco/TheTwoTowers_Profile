@@ -1,0 +1,19 @@
+#CLASS 0
+$CLASS = "Tools|Profile|Professions|Ranger"
+
+#TR Ranger_NaturesGrace {^Nature's grace%s:%s(%d)(*)} {
+Professional_Skills_Add "Nature's grace" %1 %2
+} $CLASS
+
+#TR Ranger_NaturesLore {^Nature's lore%s:%s(%d)(*)} {
+Professional_Skills_Add "Nature's lore" %1 %2
+} $CLASS
+
+#TR Ranger_Tracking {^Tracking%s:%s(%d)(*)} {
+Professional_Skills_Add Tracking %1 %2
+} $CLASS
+
+#TR Ranger_Wilderness {^Wilderness%s:%s(%d)(*)} {
+Professional_Skills_Add Wilderness %1 %2
+} $CLASS
+#CLASS 0
