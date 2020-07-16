@@ -1,0 +1,25 @@
+//RESET_Profile#CLASS 0#AL RESET_Profile {#CLASS 0
+RESET_ProfileDeclareMySettings
+RESET_ProfileVariables
+RESET_ProfileEXE
+RESET_ProfileDisplay
+RESET_ProfileGods
+RESET_ProfileGold
+RESET_ProfileCharinfo
+RESET_ProfileAlignment
+RESET_ProfileStats
+RESET_ProfileSkills
+RESET_Profiletrigger
+
+RESET_ProfessionsArcher
+RESET_ProfessionsAssassin
+RESET_ProfessionsNecromancer
+RESET_ProfessionsRanger
+RESET_ProfessionsRider
+RESET_ProfessionsSniffer
+RESET_ProfessionsThief
+RESET_ProfessionsWarrior
+RESET_ProfessionsWizard
+RESET_ProfessionsVariables
+RESET_ProfessionsVariables
+#CLASS 0} _Profile#CLASS 0
