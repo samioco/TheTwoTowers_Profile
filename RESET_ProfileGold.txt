@@ -1,0 +1,70 @@
+//RESET_ProfileGold#CLASS 0#AL RESET_ProfileGold {#CLASS 0
+$CLASS = "Tools|Profile|Gold"
+
+#TR GoldEncumbrance {^Gold: (%d)*Encumbrance: %2} {
+#VAR MyGold {%trim(%1)} {} VAR
+#VAR MyEncumbrance {%trim(%2)} {} VAR
+INFO MyGold: @MyGold, Encumbrance: @MyEncumbrance
+} $CLASS
+
+#TR GoldMaxBank {The teller says: You are over the limit of the bank system.} {
+#VAR %concat(@MyName,"_Bank") {450000} {} VAR
+#VAR MyBank {450000} {} {} VAR
+#IF (@AutoDeposit) {#VAR AutoDeposit {} {} VAR
+SysMsg Turning off auto deposit.}
+} $CLASS
+
+#TR GoldNoGold {You are poor as dirt, not a copper piece to your name!} {
+#VAR MyGold {0} {} VAR
+info {MyGold: @MyGold}
+} $CLASS
+
+//Bank
+#TR GoldDeposit {You deposit (%d) gold.} {
+#CW high,cyan
+#CAP info
+#IF (!@Deposits) {#VAR Deposits {0} {} VAR}
+#ADD Deposits %1
+#ADD MyGold -%number(%1)
+} $CLASS
+
+#TR GoldOpenBankAccount {{"You do not even have an account here!|^You do not have an account here."}} {open account} $CLASS
+
+#TR GoldWithdraw {You withdraw (%d) gold.} {
+#CW high,cyan
+#CAP info
+$withdrawal=%number(%1)
+#ADD MyGold $withdrawal
+#IF (!@WIthdrawals) {#VAR Withdrawals {0} {} VAR}
+#ADD Withdrawals $withdrawal
+} $CLASS
+
+#TR GoldBankBalance {Your current balance is %1 gold.} {
+$bank=%trim(%1)
+#CW high,bold,cyan
+#CAP Info
+#VAR MyBank {$bank} {} VAR
+#IF (@MyName) {#VAR %concat(@MyName,"_Bank") {$bank} {} @MyName}
+INFO %ansi(high,bold,cyan)@{MyName}_Bank: @MyBank
+} $CLASS
+
+#TR GoldBankBalance_Low {Your balance is only %1} {
+$bank=%trim(%1);#CW high,bold,cyan;#CAP INFO
+#VAR MyBank {$bank} {} VAR
+#IF (@MyName) {#VAR %concat(@MyName,"_Bank") {$bank} {} @MyName}
+INFO %ansi(high,bold,cyan)@{MyName}_Bank: @MyBank
+} $CLASS
+
+#TR GoldGiveGold {You give (%d) gold coins to %w.} {#CAP INFO;#MATH MyGold @MyGold -%1} $CLASS
+
+#TR GoldPutInPockets {You put (%d) gold in your pockets.} {
+#CW green
+#CAP Info
+#ADD MyGold %number(%1)
+} $CLASS
+
+#TR GoldCheck {You search your pockets and find %1 gold.} {#VAR MyGold {%trim(%1)} {%trim(%1)} VAR;INFO {MyGold: @MyGold}} $CLASS
+
+#TR GoldShare {You share (%d) gold with %w.} {#CAP Info;#MATH MyGold @MyGold -%1} $CLASS
+
+#CLASS 0} _Profile#CLASS 0

@@ -1,0 +1,24 @@
+//RESET_ProfileTrigger#CLASS 0#AL RESET_ProfileTrigger {#CLASS 0
+$CLASS = "Tools|Profile|trigger"
+
+#TR triggerToggle {^({@Messages_trigger})} {
+#SW (%ismember(%1,@Messages_triggerActivated)) {
+  #VAR trigger {1} {} VAR
+} {#VAR trigger {0} {} VAR}
+} $CLASS
+
+#TR triggerSet {^The next time you see '%1', you will do: '%2'} {
+#VAR TriggerText {%trim(%1)} {} VAR
+#VAR TriggerAction {%trim(%2)} {} VAR
+$TriggerFull=%concat("trigger ",@TriggerText," todo ",@TriggerAction)
+#VAR TriggerFull {$TriggerFull} {} VAR
+} $CLASS
+
+#TR triggerCheck {^Current trigger: '%1' todo '%2'} {
+#VAR TriggerText {%trim(%1)} {} VAR
+#VAR TriggerAction {%trim(%2)} {} VAR
+$TriggerFull=%concat("trigger ",@TriggerText," todo ",@TriggerAction)
+#VAR TriggerFull {$TriggerFull} {} VAR
+} $CLASS
+
+#CLASS 0} _Profile#CLASS 0

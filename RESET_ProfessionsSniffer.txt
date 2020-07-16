@@ -1,0 +1,28 @@
+//RESET_ProfessionsSniffer#CLASS 0#AL RESET_ProfessionsSniffer {#CLASS 0
+$CLASS = "Tools|Profile|Professions|Sniffer"
+
+#VAR Messages_Sniffer_Shiv {} {} VAR
+#ADDI Messages_Sniffer_Shiv "With lithe grace, you quickly pull your knife and stick Robust sentry"
+#ADDI Messages_Sniffer_Shiv "You deftly pull your knife and slice across Beast's body."
+
+
+#TR Sniffer_Butchery {^Butchery%s:%s(%d)(*)} {
+Professional_Skills_Add Butchery %1 %2
+} $CLASS
+
+#TR Sniffer_Prowling {^Prowling%s:%s(%d)(*)} {
+Professional_Skills_Add Prowling %1 %2
+} $CLASS
+
+#TR Sniffer_Tracking {^Tracking%s:%s(%d)(*)} {
+Professional_Skills_Add Tracking %1 %2
+} $CLASS
+
+#TR Sniffer_Wilderness {^Wilderness%s:%s(%d)(*)} {
+Professional_Skills_Add Wilderness %1 %2
+} $CLASS
+
+#TR Sniffer_Shiv {{@Messages_Sniffer_Shiv}} {
+} $CLASS
+
+#CLASS 0} _Profile#CLASS 0

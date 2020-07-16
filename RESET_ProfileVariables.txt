@@ -1,0 +1,9 @@
+//RESET_ProfileVariables#CLASS 0#AL RESET_ProfileVariables {#CLASS 0
+#VAR MyName {} {} VAR
+#VAR MyNamePossessive {} {} VAR
+#VAR MyBox {} {} VAR
+#VAR ProfileSkillName {} {} VAR
+RESET_ProfileDeclareMySettings
+#FORALL @MySettings {#VAR %concat("My",%i) {} {} VAR}
+
+#CLASS 0} _Profile#CLASS 0
