@@ -1,0 +1,73 @@
+#CLASS 0
+$CLASS = "Tools|Profile|Professions|Necromancer"
+#VAR Messages_Necromancer_Casting {} {} VAR
+#ADDI Messages_Necromancer_Casting "You begin summoning the destructive forces of nature!"
+#ADDI Messages_Necromancer_Casting "The atmosphere convulses with angry winds!"
+#ADDI Messages_Necromancer_Casting "You begin to weave a cloak of great darkness."
+#ADDI Messages_Necromancer_Casting "You continue to weave the cloak, spinning webs of darkness."
+#ADDI Messages_Necromancer_Casting "You begin to conjure flames."
+#ADDI Messages_Necromancer_Casting "flow over you as you begin to summon the FLAMES of ANGBAND!!!"
+#ADDI Messages_Necromancer_Casting "From your fingertips down to your toes you feel the flames begin to adhere"
+#ADDI Messages_Necromancer_Casting "pale for a moment as you leech the very life"
+#ADDI Messages_Necromancer_Casting "You continue to focus your efforts on leeching life from"
+#ADDI Messages_Necromancer_Casting "You begin to conjure an ice spike."
+#ADDI Messages_Necromancer_Casting "You gather water from  your environment into a small puddle."
+#ADDI Messages_Necromancer_Casting "You concentrate as the water is turned into ice."
+#ADDI Messages_Necromancer_Casting "You grab the ice and mold it into a perfect cone of ice."
+
+#VAR Messages_Necromancer_Casting_Complete {} {} VAR
+#ADDI Messages_Necromancer_Casting_Complete "You complete your ritual and release your deadly grasp from"
+#ADDI Messages_Necromancer_Casting_Complete "The FLAMES surround you and fill you with their power."
+#ADDI Messages_Necromancer_Casting_Complete "Your deadly ice spike explodes upon impact with"
+#ADDI Messages_Necromancer_Casting_Complete "Your will has been broken!"
+#ADDI Messages_Necromancer_Casting_Complete "Your target has escaped your cold grasp."
+
+#VAR Messages_Necromancer_Casting_All {} {} VAR
+#FORALL @Messages_Necromancer_Casting {#ADDI Messages_Necromancer_Casting_All %i}
+#FORALL @Messages_Necromancer_Casting_Complete {#ADDI Messages_Necromancer_Casting_All %i}
+
+#TR Necromancer_6thSense {^6th Sense%s:%s(%d)(*)} {
+Professional_Skills_Add "6th Sense" %1 %2
+} $CLASS
+
+#TR Necromancer_Necromancy {^Necromancy%s:%s(%d)(*)} {
+Professional_Skills_Add Necromancy %1 %2
+} $CLASS
+
+#TR Necromancer_WarpMagic {^Warp magic%s:%s(%d)(*)} {
+Professional_Skills_Add "Warp magic" %1 %2
+} $CLASS
+
+#TR Necromancer_Will {^Will%s:%s(%d)(*)} {
+Professional_Skills_Add Will %1 %2
+} $CLASS
+
+
+#TR JBS_Concentrate_On {You concentrate hard to strengthen your mind, and feel the darkness} {
+JBS_Concentrate 60
+} $CLASS
+
+#TR JBS_Concentrate_OFF {{"lose your concentration abruptly and almost fall, feeling very dizzy|concentration, and the void within you somehow seems to disappear into the"}} {
+#UNT Alarm_JBS
+JBS_Cooldown 120
+} $CLASS
+
+#TR Necro_Casting_Toggle {({@Messages_Necromancer_Casting_All})} {
+#SW (%ismember(%1,@Messages_Necromancer_Casting)) {#VAR Casting {} {} VAR} {#VAR Casting {1} {} VAR}
+} $CLASS
+
+#TR Necro_Hurricane_INIT {You begin summoning the destructive forces of nature!} {#CW high,yellow
+} $CLASS
+#TR Necro_Hurricane_InitByOther {Dark winds begin to swirl around %1!} {#CW high,red} $CLASS
+#TR Necro_Hurricane_Casting {The atmosphere convulses with angry winds!} {#CW yellow} $CLASS
+#TR Necro_Leech_INIT {pale for a moment as you leech the very life} {#CW high,red} $CLASS
+#TR Necro_Leech_Casting {You continue to focus your efforts on leeching life from %1.} {#CW yellow} $CLASS
+#TR Necro_Leech_End {You complete your ritual and release your deadly grasp from %1.} {#CW high,red} $CLASS
+
+#TR Necro_Casting_Broken {Your will has been broken!} {#VAR casting {0} {} VAR
+#SUB {%ansi(white,blink)Your will has been broken!}
+} $CLASS
+#TR Necro_Cloak_Off {The dark cloak begins to fade out of existence.} {#CW high,cyan,blink
+} $CLASS
+
+#CLASS 0
