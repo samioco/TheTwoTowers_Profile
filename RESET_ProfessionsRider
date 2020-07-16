@@ -1,0 +1,19 @@
+#CLASS 0
+$CLASS = "Tools|Profile|Professions|Rider"
+
+#TR Rider_Balance {^Balance%s:%s(%d)(*)} {
+Professional_Skills_Add Balance %1 %2
+} $CLASS
+
+#TR Rider_Motivation {^Motivation%s:%s(%d)(*)} {
+Professional_Skills_Add Motivation %1 %2
+} $CLASS
+
+#TR Rider_MountedCombat {^Mounted combat%s:%s(%d)(*)} {
+Professional_Skills_Add "Mounted combat" %1 %2
+} $CLASS
+
+#TR Rider_Taming {^Taming%s:%s(%d)(*)} {
+Professional_Skills_Add Taming %1 %2
+} $CLASS
+#CLASS 0
