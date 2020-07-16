@@ -1,0 +1,219 @@
+#CLASS 0
+$CLASS = "Tools|Profile|Charinfo"
+
+//Charinfo
+#TR Charinfo_Profile_MyName {^%1 the ({@Races})(*)} {
+#T- Charinfo_Profile_MyName
+#VAR MyName {%word(%1,1)} {} VAR
+$title=%replace(%3,"~(evil~)")
+$title=%replace($title,"~(free~)")
+$title=%trim($title)
+#IF (@MyName) {
+  #VAR %concat(@MyName,"_Title") {$title} {} @MyName
+}
+#CLASS 0
+#T+ Charinfo_Surname_Race_Gender
+#T+ Charinfo_Prof_Level_Rank
+#T+ Charinfo_Mail_Alignment
+#T+ Charinfo_Age
+#T+ Charinfo_CreationDate
+#T+ Charinfo_TotalDeaths_LastDeath
+#T+ Charinfo_Merciful_Wimpy_Privacy
+#T+ Charinfo_AutoAccept_Group_Snoopable
+#T+ Charinfo_LastOn_PartyAutoSplit
+#T+ Charinfo_PvPStatus
+} $CLASS
+
+#EV onConnect {#T+ Profile_MXPEnabled} $CLASS
+#TR Profile_MXPEnabled {^MXP enabled.} {#T- Profile_MXPEnabled;profile} $CLASS
+
+
+#TR Charinfo_Surname_Race_Gender {^Surname: %1%s({"|~[on~]|~[off~]|Not set"})%sRace: %3%sGender: %4} {
+#VAR MySurname {%trim(%1)} {} VAR
+#VAR MySurnameToggle {%trim(%2)} {} VAR
+#VAR MyTrueRace {%trim(%3)} {} VAR
+#VAR MyPublicRace {@MyTrueRace} {} VAR
+#VAR MyTrueGender {%trim(%4)} {} VAR
+#VAR MyPublicGender {@MyTrueGender} {} VAR
+
+#IF (@MyName) {
+  #IF (@MySurname="Not set") {
+    #VAR MyFullName {@MyName} {} VAR
+  } {
+    #IF (%pos("[",@MySurname)) {
+      #VAR MySurname {%copy(@MySurname,0,%pos("[",@MySurname)-2)} {} VAR
+    }
+    #VAR MyFullName {%concat(@MyName," ",@MySurname)} {} VAR
+  }
+  #VAR %concat(@MyName,"_Surname") {%copy(@MySurname,0,%pos("[",@MySurname)-2)} {} @MyName
+  #VAR %concat(@MyName,"_FullName") {@MyFullName} {} @MyName
+  #VAR %concat(@MyName,"_SurnameToggle") {@MySurnameToggle} {} @MyName
+  #VAR %concat(@MyName,"_TrueRace") {@MyTrueRace} {} @MyName
+  #VAR %concat(@MyName,"_PublicRace") {@MyPublicRace} {} @MyName
+  #VAR %concat(@MyName,"_TrueGender") {@MyTrueGender} {} @MyName
+  #VAR %concat(@MyName,"_PublicGender") {@MyPublicGender} {} @MyName
+}
+Profile_SetSightRange
+} $CLASS
+
+#TR Charinfo_Prof_Level_Rank {^Profession: ({@Professions})%sLevel: (%d)%sRank: (%w)} {
+#VAR MyProf {%lower(%trim(%1))} {} VAR
+#VAR MyTrueProf {@MyProf} {} VAR
+#VAR MyPublicProf {@MyProf} {} VAR
+#VAR MyLevel {%trim(%2)} {} VAR
+#VAR MyTrueLevel {@MyLevel} {} VAR
+#VAR MyPublicLevel {@MyLevel} {} VAR
+#VAR MyRank {%trim(%3)}
+#IF (@MyName) {
+  #VAR %concat(@MyName,"_TrueProfession") {@MyProf} {} @MyName
+  #VAR %concat(@MyName,"_PublicProfession") {@MyPublicProf} {} @MyName
+  #VAR %concat(@MyName,"_TrueLevel") {@MyTrueLevel} {} @MyName
+  #VAR %concat(@MyName,"_PublicLevel") {@MyPublicLevel} {} @MyName
+  #VAR %concat(@MyName,"_Rank") {@MyRank} {} @MyName
+}
+} $CLASS
+
+
+#TR Charinfo_Mail_Alignment {^Mail Location: %1%sAlignment: ({@alignments})} {
+#VAR MyMailLocation {%trim(%1)} {} VAR
+#VAR MyTrueAlign {%trim(%2)} {} VAR
+#VAR MyPublicAlign {@MyTrueAlign} {} VAR
+#IF (@MyName) {
+  #VAR %concat(@MyName,"_MailLocation") {@MyMailLocation} {} @MyName
+  #VAR %concat(@MyName,"_TrueAlignment") {@MyTrueAlign} {} @MyName
+  #VAR %concat(@MyName,"_PublicAlignment") {@MyPublicAlign} {} @MyName
+}
+} $CLASS
+
+#TR Charinfo_TotalDeaths_LastDeath1 {^Total deaths: %1%sLast Death: %2} {
+#VAR MyTotalDeaths {%trim(%1)} {} VAR
+#VAR MyLastDeath {%trim(%2)} {} VAR
+#IF (@MyName) {
+  #VAR %concat(@MyName,"_TotalDeaths") {@MyTotalDeaths} {} @MyName
+  #VAR %concat(@MyName,"_LastDeath") {@MyLastDeath} {} @MyName
+}
+} $CLASS
+
+#TR Charinfo_TotalDeaths_LastDeath2 {^No counted deaths. %sLast Death: %2} {
+#VAR MyTotalDeaths {0} {} VAR
+#VAR MyLastDeath {%trim(%2)} {} VAR
+#IF (@MyName) {
+  #VAR %concat(@MyName,"_TotalDeaths") {@MyTotalDeaths} {} @MyName
+  #VAR %concat(@MyName,"_LastDeath") {@MyLastDeath} {} @MyName
+}
+} $CLASS
+
+
+#TR Charinfo_Age_30dAging {^Age: %1%s30dAging: %2} {
+#VAR MyAge {%trim(%1)} {} VAR
+#VAR My30dAging {%trim(%2)} {} VAR
+#IF (@MyName) {
+  #VAR %concat(@MyName,"_Age") {@MyAge} {} @MyName
+  #VAR %concat(@MyName,"_30dAging") {@My30dAging} {} @MyName
+}
+} $CLASS
+
+#TR Charinfo_CreationDate {^Creation date: %1 ~(* ago~)} {
+#VAR MyCreationDate {%trim(%1)} {} VAR
+#IF (@MyName) {#VAR %concat(@MyName,"_CreationDate") {@MyCreationDate} {} @MyName}
+} $CLASS
+
+
+#TR Charinfo_PvPStatus {^PvP status: %1} {
+#VAR MyPvPStatus {%trim(%1)} {} VAR
+#IF (@MyName) {#VAR %concat(@MyName,"_PvPStatus") {@MyPvPStatus} {} @MyName}
+} $CLASS
+
+
+
+#TR Charinfo_Merciful_Wimpy_Privacy {^Merciful: %1%sWimpy: %2%sPrivacy: %3} {
+#VAR MyMerciful {%trim(%1)} {} VAR
+#VAR MyWimpy {%trim(%2)} {} VAR
+#VAR MyPrivacy {%trim(%3)} {} VAR
+#IF (@MyName) {
+  #VAR %concat(@MyName,"_Merciful") {@MyMerciful} {} @MyName
+  #VAR %concat(@MyName,"_Wimpy") {@MyWimpy} {} @MyName
+  #VAR %concat(@MyName,"_Privacy") {@MyPrivacy} {} @MyName
+}
+} $CLASS
+
+
+#TR Charinfo_LevelUp {^You are now level (%d).} {
+#VAR MyTrueLevel {%trim(%1)} {} VAR
+#IF (@MyName) {#VAR %concat(@MyName,"_TrueLevel") {@MyTrueLevel} {} @MyName}
+} $CLASS
+
+#TR Charinfo_LastOn_PartyAutoSplit {^Last on: %1%sParty autosplit: %2} {
+#VAR MyLastOn {%trim(%1)} {} VAR
+#VAR MyPartyAutoSplit {%trim(%2)} {} VAR
+#IF (@MyName) {
+  #VAR %concat(@MyName,"_LastOn") {@MyLastOn} {} @MyName
+  #VAR %concat(@MyName,"_PartyAutoSplit") {@MyPartyAutoSplit} {} @MyName
+}
+} $CLASS
+
+#TR Charinfo_Guild {^Affiliations: {"Member|Guildmaster"} of the %1.} {
+#IF (@MyName) {#VAR %concat(@MyName,"_Guild") {%trim(%1)} {} @MyName}
+} $CLASS
+
+
+#TR Charinfo_AutoAccept_Group_Snoopable {^AutoAccept: %1%sGroup: %2%sSnoopable: %3} {
+#VAR MyAutoAccept {%trim(%1)} {} VAR
+#VAR MyGroup {%trim(%2)} {} VAR
+#VAR MySnoopable {%trim(%3)} {} VAR
+#IF (@MyName) {
+  #VAR %concat(@MyName,"_AutoAccept") {@MyAutoAccept} {} @MyName
+  #VAR %concat(@MyName,"_Group") {@MyGroup} {} @MyName
+  #VAR %concat(@MyName,"_Snoopable") {@MySnoopable} {} @MyName
+}
+} $CLASS
+
+
+
+#TR Charinfo_Profile_INIT {^-------------------------- Personal Information} {
+#T- Charinfo_Profile_INIT
+$MyName=@MyName
+$MyNamePossessive=""
+#IF (%rightback(%word(@MyName,1),1)="s") {
+  $MyNamePossessive=%concat(%word(@MyName,1),"'")
+} {
+  $MyNamePossessive=%concat(%word(@MyName,1),"'s")
+}
+#VAR MyNamePossessive {$MyNamePossessive} {} VAR
+#VAR %concat(@MyName,"_Possessive") {$MyNamePossessive} {} VAR
+
+#SW ((%ismember(%lower(@MyTrueRace),%lower(@FreeRaces))) && (%lower(@MyTrueAlign)=%lower("Shadowspawn of Mordor"))) {
+  #VAR MyFaction {"servant"} {} VAR
+} (%ismember(%lower(@MyTrueRace),%lower(@FreeRaces))) {
+  #VAR MyFaction {"FR"} {} VAR
+} {
+  #VAR MyFaction {"ER"} {} VAR
+}
+
+#IF (@MyName) {
+  #VAR %concat(@MyName,"_Faction") {@MyFaction} {} @MyName
+}
+$MyMountType="horse"
+#IF ((@MyProf="rider") AND (@MyTrueRace="uruk-hai")) {$MyMountType="warg"}
+
+#VAR MyMountType {$MyMountType} {} VAR
+#VAR MountType {$MyMountType} {} VAR
+$MyMount=%lower(%concat($MyNamePossessive," ",@MyMountType))
+#VAR MyMount {$MyMount} {} VAR
+MyProfileVars
+SysMsg Profile Updated:
+Stat
+Profile_Defaults
+} $CLASS
+
+
+#TR MyName {^@MyName*the ({@Races})} {
+#CW high,yellow
+#VAR MyPublicRace {%lower(@{%concat(@MyName,"_PublicRace")})} {} VAR
+#IF (@MyName) {
+  #VAR %concat(@MyName,"_PublicRace") {%trim(%1)} {} @MyName
+  #VAR %concat(@MyName,"_Title") {%trim(%2)} {} @MyName
+}
+} $CLASS
+
+#CLASS 0
