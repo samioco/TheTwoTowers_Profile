@@ -1,0 +1,41 @@
+#CLASS 0
+$CLASS = "Tools|Profile|Skills"
+
+#TR Skills_CommonSkills {^Common Skills:} {
+#T+ Skills_Aim_Attack_Awareness
+#T+ Skills_Defense_Dodge_Evasion
+#T+ Skills_FireBuilding_Intuition_Riding
+} $CLASS
+
+#TR Skills_Aim_Attack_Awareness {^Aim%s:%s(%d)%sAttack%s:%s(%d)%sAwareness%s:%s(%d)} {
+#IF (@MyName) {
+#VAR %concat(@MyName,"_Aim") {%trim(%1)} {} @MyName
+#VAR %concat(@MyName,"_Attack") {%trim(%2)} {} @MyName
+#VAR %concat(@MyName,"_Awareness") {%trim(%3)} {} @MyName
+}
+} $CLASS
+
+#TR Skills_Defense_Dodge_Evasion {^Defense%s:%s(%d)%sDodge%s:%s(%d)%sEvasion%s:%s(%d)} {
+#IF (@MyName) {
+#VAR %concat(@MyName,"_Defense") {%trim(%1)} {} @MyName
+#VAR %concat(@MyName,"_Dodge") {%trim(%2)} {} @MyName
+#VAR %concat(@MyName,"_Evasion") {%trim(%3)} {} @MyName
+}
+} $CLASS
+
+#TR Skills_FireBuilding_Intuition_Riding {^Fire building%s:%s(%d)%sIntuition%s:%s(%d)%sRiding%s:%s(%d)} {
+#IF (@MyName) {
+#VAR %concat(@MyName,"_FireBuilding") {%trim(%1)} {} @MyName
+#VAR %concat(@MyName,"_Intuition") {%trim(%2)} {} @MyName
+#VAR %concat(@MyName,"_Riding") {%trim(%3)} {} @MyName
+}
+} $CLASS
+
+
+//Professional Skills
+#TR Profile_ProfessionalSkills {^Professional Skills:{|%sOther Skills:}} {
+#IF (@MyName) {
+#VAR %concat(@MyName,"_OtherSkills") {} {} @MyName
+}
+} $CLASS
+#CLASS 0
