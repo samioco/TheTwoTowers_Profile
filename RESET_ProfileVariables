@@ -1,0 +1,9 @@
+#CLASS 0
+#VAR MyName {} {} VAR
+#VAR MyNamePossessive {} {} VAR
+#VAR MyBox {} {} VAR
+#VAR ProfileSkillName {} {} VAR
+DeclareMySettings
+#FORALL @MySettings {#VAR %concat("My",%i) {} {} VAR}
+
+#CLASS 0
