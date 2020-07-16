@@ -1,0 +1,29 @@
+#CLASS 0
+$CLASS = "Tools|Profile|Professions|Warrior"
+
+#VAR Messages_Warrior_Headbutt {} {} VAR
+#ADDI Messages_Warrior_Headbutt "Disregarding your own personal safety, you smash your head into *!"
+#ADDI Messages_Warrior_Headbutt "You grapple with *, your cranium colliding with * face."
+#ADDI Messages_Warrior_Headbutt "You plant a pathetic headbutt on *."
+#ADDI Messages_Warrior_Headbutt "You pull * closer to you and headbutt * square in the face."
+#ADDI Messages_Warrior_Headbutt "You quickly thrust your forehead into the bridge of * nose."
+#ADDI Messages_Warrior_Headbutt "You shout out a battlecry as your forehead demolishes * nose."
+
+
+#TR Warrior_BattleInstincts {^Battle Instincts%s:%s(%d)(*)} {
+Professional_Skills_Add "Battle Instincts" %1 %2
+} $CLASS
+
+#TR Warrior_Blocking {^Blocking%s:%s(%d)(*)} {
+Professional_Skills_Add Blocking %1 %2
+} $CLASS
+
+#TR Warrior_CombatArms {^Combat arms%s:%s(%d)(*)} {
+Professional_Skills_Add "Combat arms" %1 %2
+} $CLASS
+
+#TR Warrior_Tactics {^Tactics%s:%s(%d)(*)} {
+Professional_Skills_Add Tactics %1 %2
+} $CLASS
+
+#CLASS 0
